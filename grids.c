@@ -67,10 +67,11 @@ void grids_output(t_grids *grids);
 
 void grids_setup(void)
 {
-    grids_class = class_new(gensym("grids"), (t_newmethod)grids_new, (t_method)grids_free, sizeof(t_grids), CLASS_DEFAULT, A_GIMME);
+    grids_class = class_new(gensym("grids"), (t_newmethod)grids_new, (t_method)grids_free, sizeof(t_grids), CLASS_DEFAULT, A_GIMME, 0);
     
     //Method space definition
     class_addfloat(grids_class, grids_in_mode_and_clock);
+    
 
 }
 
@@ -189,6 +190,7 @@ void grids_output(t_grids *grids) {
     if ((grids->state & 32) > 0)
         outlet_float(grids->outlet_hihat_accent_gate, grids->velocities[2]);
 }
+
 void grids_evaluate_drums(t_grids *grids) {
     // At the beginning of a pattern, decide on perturbation levels
     
@@ -240,7 +242,7 @@ t_int grids_read_drum_map(t_grids *grids, t_int instrument) {
     t_int* c_map = drum_map[i][j + 1];
     t_int* d_map = drum_map[i + 1][j + 1];
     
-    int offset = (instrument * grids->kStepsPerPattern) + step;
+    int offset = (int) ((instrument * grids->kStepsPerPattern) + step);
     t_int a = a_map[offset];
     t_int b = b_map[offset];
     t_int c = c_map[offset];
@@ -273,6 +275,7 @@ void grids_evaluate_euclidean(t_grids *grids) {
     }
     grids->state |= reset_bits << 3;
 }
+
 void grids_free(t_grids *x)
 {
 }

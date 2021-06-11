@@ -6,3 +6,11 @@ Grids is a topographic drum sequencer eurorack module from mutable instruments: 
 Pd-Grids is a port to a Pure Data external, building on an earlier conversion to a Max external by Henri David: https://github.com/hdavid/Grids
 
 Video: https://youtu.be/EhJqz1WFxbA
+
+This fork adds the following to the original [pd-port](https://github.com/spoitras/Pd-Grids) by Sylvain Poitras:
+
+- Demo pd file
+
+
+
+
